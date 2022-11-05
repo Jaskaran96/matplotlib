@@ -4102,7 +4102,7 @@ class Axes(_AxesBase):
         if zorder is None:
             zorder = mlines.Line2D.zorder
 
-        if medianprops.get('solid_capstyle') is None:
+        if medianprops is None or medianprops.get('solid_capstyle', None) is None:
             medianprops['solid_capstyle'] = 'butt'
 
         zdelta = -0.1
