@@ -773,6 +773,7 @@ class Colorbar:
         self.lines.append(col)
 
         # make a clip path that is just a linewidth bigger than the axes...
+        print(f"Line****wdith is {linewidths}")
         fac = np.max(linewidths) / 72
         xy = np.array([[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]])
         inches = self.ax.get_figure().dpi_scale_trans
@@ -1239,10 +1240,15 @@ class Colorbar:
         yscaled = np.ma.filled(norm(yscaled), np.nan)
         # make the lower and upper extend lengths proportional to the lengths
         # of the first and last boundary spacing (if extendfrac='auto'):
-        automin = yscaled[1] - yscaled[0]
-        automax = yscaled[-1] - yscaled[-2]
+        print(f"yscaled is {yscaled}")
+        
         extendlength = [0, 0]
         if self._extend_lower() or self._extend_upper():
+            automin = yscaled[0]
+            automax = yscaled[0]
+            if len(yscaled) > 1:
+                automin = yscaled[1] - yscaled[0]
+                automax = yscaled[-1] - yscaled[-2]
             extendlength = self._get_extension_lengths(
                     self.extendfrac, automin, automax, default=0.05)
         return y, extendlength
