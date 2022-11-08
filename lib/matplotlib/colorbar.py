@@ -773,20 +773,20 @@ class Colorbar:
         self.lines.append(col)
 
         # make a clip path that is just a linewidth bigger than the axes...
-        print(f"Line****wdith is {linewidths}")
-        fac = np.max(linewidths) / 72
-        xy = np.array([[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]])
-        inches = self.ax.get_figure().dpi_scale_trans
-        # do in inches:
-        xy = inches.inverted().transform(self.ax.transAxes.transform(xy))
-        xy[[0, 1, 4], 1] -= fac
-        xy[[2, 3], 1] += fac
-        # back to axes units...
-        xy = self.ax.transAxes.inverted().transform(inches.transform(xy))
-        col.set_clip_path(mpath.Path(xy, closed=True),
-                          self.ax.transAxes)
-        self.ax.add_collection(col)
-        self.stale = True
+        if(len(linewidths)>0):
+            fac = np.max(linewidths) / 72
+            xy = np.array([[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]])
+            inches = self.ax.get_figure().dpi_scale_trans
+            # do in inches:
+            xy = inches.inverted().transform(self.ax.transAxes.transform(xy))
+            xy[[0, 1, 4], 1] -= fac
+            xy[[2, 3], 1] += fac
+            # back to axes units...
+            xy = self.ax.transAxes.inverted().transform(inches.transform(xy))
+            col.set_clip_path(mpath.Path(xy, closed=True),
+                            self.ax.transAxes)
+            self.ax.add_collection(col)
+            self.stale = True
 
     def update_ticks(self):
         """
