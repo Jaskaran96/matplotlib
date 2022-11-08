@@ -1240,7 +1240,6 @@ class Colorbar:
         yscaled = np.ma.filled(norm(yscaled), np.nan)
         # make the lower and upper extend lengths proportional to the lengths
         # of the first and last boundary spacing (if extendfrac='auto'):
-        print(f"yscaled is {yscaled}")
         
         extendlength = [0, 0]
         if self._extend_lower() or self._extend_upper():
