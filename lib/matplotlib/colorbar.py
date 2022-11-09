@@ -773,7 +773,7 @@ class Colorbar:
         self.lines.append(col)
 
         # make a clip path that is just a linewidth bigger than the axes...
-        if(len(linewidths)>0):
+        if(len(linewidths)>=1):
             fac = np.max(linewidths) / 72
             xy = np.array([[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]])
             inches = self.ax.get_figure().dpi_scale_trans
