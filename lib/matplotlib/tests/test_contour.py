@@ -20,6 +20,30 @@ def test_contour_bug():
     fig, ax = plt.subplots()
     cs = ax.contour([[1, 2], [1, 2]])
 
+@image_comparison(baseline_images=['contour_bug_2'], remove_text=False,
+                  extensions=['png'])
+def test_contour_bug_2():
+    fig, ax = plt.subplots()
+    cs = ax.contour([[1, 2, 3], [4, 5, 6]])
+    fig.colorbar(cs, ax=ax)
+
+@image_comparison(baseline_images=['contour_bug_3'], remove_text=False,
+                  extensions=['png'])
+def test_contour_bug_3():
+    feature_x = np.arange(0, 50, 2)
+    feature_y = np.arange(0, 50, 3)
+    # Creating 2-D grid of features
+    [X, Y] = np.meshgrid(feature_x, feature_y)
+    fig, ax = plt.subplots(1, 1)
+    Z = np.cos(X / 2) + np.sin(Y / 4)
+    # plots contour lines
+    cs = ax.contour(X, Y, Z)
+
+    ax.set_title('Contour Plot')
+    ax.set_xlabel('feature_x')
+    ax.set_ylabel('feature_y')
+    fig.colorbar(cs, ax=ax)
+
 
 def test_contour_shape_1d_valid():
 

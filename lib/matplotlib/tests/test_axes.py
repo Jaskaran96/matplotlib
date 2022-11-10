@@ -45,6 +45,19 @@ from matplotlib.testing.decorators import (
 #       the tests with multiple threads.
 
 
+@image_comparison(baseline_images=['mean_overlap'], remove_text=True,
+                  extensions=['png'])
+def test_mean_overlap():
+    data = [[1, 2, 3, 4, 7]]
+    fig, ax = plt.subplots()
+    ax.boxplot(data,
+           showmeans=True,
+           meanline=True,
+           meanprops={"linewidth": 8})
+
+    #fig, ax = plt.subplots()
+    #cs = ax.contour([[1, 1], [1, 1]])
+
 #@check_figures_equal(extensions=["png"])
 #def test_invisible_axes(fig_test, fig_ref):
 #    ax = fig_test.subplots()
