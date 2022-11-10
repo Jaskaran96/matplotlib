@@ -3355,10 +3355,13 @@ def test_boxplot_zorder():
 @check_figures_equal()
 def test_boxplot_median_bound_by_box(fig_test, fig_ref):
     data = np.arange(3)
-    medianprops_test = {"linewidth": 12}
-    medianprops_ref = {**medianprops_test, "solid_capstyle": "butt"}
-    fig_test.subplots().boxplot(data,  medianprops=medianprops_test)
-    fig_ref.subplots().boxplot(data, medianprops=medianprops_ref)
+    lineWidth = 14
+    medianpropsTest = {"linewidth": lineWidth}
+    capstyle = "butt"
+    medianpropsRef = {**medianpropsTest, "solid_capstyle": "round"}
+    fig_test.subplots().boxplot(data,  medianprops=medianpropsTest)
+    fig_ref.subplots().boxplot(data, medianprops=medianpropsRef)
+    
 
 def test_boxplot_marker_behavior():
     plt.rcParams['lines.marker'] = 's'
