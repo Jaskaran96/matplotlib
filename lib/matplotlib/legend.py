@@ -573,10 +573,10 @@ class Legend(Artist):
                     try:
                         color = getattr(handle, getter_name)()
                         if isinstance(color, np.ndarray):
-                            if (color.shape[0] == 1 or np.isclose(color, color[0]).all() ):
-                                text.set_color(color[0])
-                            else:
+                            if (color.shape[0] > 1 or not np.isclose(color, color[0]).all() ):
                                 pass
+                            else:
+                                text.set_color(color[0])
                         else:
                             text.set_color(color)
                         break
