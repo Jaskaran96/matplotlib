@@ -20,6 +20,7 @@ defined to support arbitrary objects.
 See the :doc:`legend guide </tutorials/intermediate/legend_guide>` for more
 information.
 """
+""" Improved scatter plot """
 
 import itertools
 import logging
