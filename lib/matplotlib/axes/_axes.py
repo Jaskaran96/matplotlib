@@ -4100,7 +4100,8 @@ class Axes(_AxesBase):
 
         # Use default zorder if none specified
         if zorder is None:
-            zorder = mlines.Line2D.zorder
+            zorder = 2
+        
         styling = "solid_capstyle"
         getElement = medianprops.get(styling, None)
         
