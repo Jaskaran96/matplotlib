@@ -561,7 +561,9 @@ class Legend(Artist):
                 labelcolor = mpl.rcParams['text.color']
         if isinstance(labelcolor, str) and labelcolor in color_getters:
             getter_names = color_getters[labelcolor]
-            for handle, text in zip(self.legendHandles, self.texts):
+            for item in zip(self.legendHandles, self.texts):
+                handle = item[0]
+                text = item[1]
                 try:
                     if handle.get_array() is not None:
                         continue
@@ -571,10 +573,7 @@ class Legend(Artist):
                     try:
                         color = getattr(handle, getter_name)()
                         if isinstance(color, np.ndarray):
-                            if (
-                                    color.shape[0] == 1
-                                    or np.isclose(color, color[0]).all()
-                            ):
+                            if (color.shape[0] == 1 or np.isclose(color, color[0]).all() ):
                                 text.set_color(color[0])
                             else:
                                 pass
