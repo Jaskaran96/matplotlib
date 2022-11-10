@@ -4064,7 +4064,7 @@ class Axes(_AxesBase):
           If True, the tick locations and labels will be adjusted to match the
           boxplot positions.
 
-        zorder : float, default: ``Line2D.zorder = 2``
+        zorder : float, default: 2
           The zorder of the resulting boxplot.
 
         Returns
