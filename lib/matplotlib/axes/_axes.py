@@ -4104,6 +4104,7 @@ class Axes(_AxesBase):
         styling = "solid_capstyle"
         getElement = medianprops.get(styling, None)
         
+        # fixes the bug which was causing the lines to extend beyond the box in the box plot
         if medianprops is None or getElement is None:
             medianprops[styling] = 'butt'
 
